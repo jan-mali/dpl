@@ -840,7 +840,7 @@ std::vector<const char*> CodeGenerator::generate_raw_statement(RawStatement* raw
         while (token)
         {
             const char* trimmed = trim_line(strdup(token));
-            char text[512]{ 0 };
+            char text[4096]{ 0 };
             const char* ptr = trimmed - 1;
             size_t index = 0;
             while (*(++ptr)) {
@@ -884,8 +884,8 @@ std::vector<const char*> CodeGenerator::generate_raw_statement(RawStatement* raw
                     continue;
                 }
                 text[index++] = *ptr;
-                ErrorReporter::assert_or_internal_error(index < 512, raw->token(), "Arbitrary limity passed: A line cannot be longer than 512 bytes");
-                assert(index < 512);
+                ErrorReporter::assert_or_internal_error(index < 4096, raw->token(), "Arbitrary limity passed: A line cannot be longer than 4096 bytes");
+                assert(index < 4096);
             }
             lines.push_back(strdup(text));
 #ifdef _WIN32
