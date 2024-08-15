@@ -10,7 +10,7 @@
 #include <unistd.h>
 #endif
 
-void Exporter::run(std::vector<CodeGeneratorResult> code)
+void Exporter::run(std::vector<CodeGeneratorResult>& code)
 {
 	Directory* root_dir = new Directory({ "dpl_output" });
 	for (CodeGeneratorResult cgr : code)
